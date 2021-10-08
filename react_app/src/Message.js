@@ -1,12 +1,11 @@
 import './Message.css'
 
-export function Message(props) {
-
-    const { text } = props;
+export function Message({ author, text }) {
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', width: '90%', padding: '10px', backgroundColor: '#105264'}}>
-            <p className="Message-text">{text}</p>
+        <div className="Message-wrapper">
+            <p className="Message-text"><span className="Message-author">Автор сообщения:</span> {author}</p>
+            <p className="Message-text"><span className="Message-author">Сообщение:</span> {text}</p>
         </div>
     );
 }

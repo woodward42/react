@@ -1,4 +1,19 @@
 .Message-text{
     font-weight: bold;
-    color: #ccc;
+    color: rgb(78, 72, 72);
+    margin: 0;
+}
+
+.Message-wrapper{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    padding: 5px;
+    font-size: 16px;
+    background-color: #3ab2d3;
+    margin-bottom: 10px;
+}
+
+.Message-author{
+    color:firebrick;
 }
