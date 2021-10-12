@@ -43,7 +43,7 @@ export function App() {
   return (
     
     <div className="App">
-      <h3 className="App-header"> homework-2</h3>
+      <h3 className="App-header"> homework-3</h3>
       
       {
         //рендерим сообщения
