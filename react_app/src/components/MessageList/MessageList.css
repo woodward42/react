@@ -1,3 +1,31 @@
+.MessageList-Input-custom{
+  width: 70%;
+}
+
+.MessageList-Send-btn:hover{
+  cursor: pointer;
+}
+
+.App-grid-wrapper{
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  width: 90%;
+}
+
+.App-chats-list{
+  
+}
+
+.App-messages-list{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+
+
 .App-header {
   text-align: center;
 }
