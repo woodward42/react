@@ -1,0 +1,18 @@
+.icon,
+.text {
+  color: #fff;
+}
+
+.text span {
+  font-size: 14px;
+}
+
+.item{
+    background-color: rgb(186, 195, 207);
+}
+.item.Mui-selected {
+    background-color: #2b5278;
+}
+.item.Mui-selected:hover {
+    background-color: #2b5278;
+}

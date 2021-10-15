@@ -6,26 +6,6 @@
   cursor: pointer;
 }
 
-.App-grid-wrapper{
-  display: grid;
-  grid-template-columns: 1fr 4fr;
-  width: 90%;
-}
-
-.App-chats-list{
-  
-}
-
-.App-messages-list{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-}
-
-
-
 .App-header {
   text-align: center;
 }
@@ -41,16 +21,6 @@
   }
 }
 
-.App {
-  background-color: #c0c2c7;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  font-size: calc(10px + 2vmin);
-  color: rgb(37, 30, 30);
-}
 
 .App-link {
   color: #105264;

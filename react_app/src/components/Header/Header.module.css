@@ -1,9 +1,3 @@
-.header_div{
+.header{
     border: 2px dotted redbrick;
-    min-height: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    background-color: burlywood;
 }
