@@ -14,7 +14,8 @@
 }
 
 .chats_list {
-    color: greenyellow;
+    color: firebrick;
+    text-transform: uppercase;
 }
 
 .messages_list {

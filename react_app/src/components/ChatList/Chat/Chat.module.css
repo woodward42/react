@@ -1,18 +1,18 @@
 .icon,
 .text {
-  color: #fff;
+	color: #fff;
 }
 
 .text span {
-  font-size: 14px;
+	font-size: 14px;
 }
 
-.item{
-    background-color: rgb(186, 195, 207);
+.item {
+	background-color: black;
 }
-.item.Mui-selected {
-    background-color: #2b5278;
+.MuiListItem-root.Mui-selected {
+	background-color: #213e5a !important;
 }
-.item.Mui-selected:hover {
-    background-color: #2b5278;
+.Mui-selected:hover {
+	background-color: #213e5a;
 }
