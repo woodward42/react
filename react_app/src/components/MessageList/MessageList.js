@@ -5,16 +5,18 @@ import { Input, InputAdornment } from "@mui/material";
 import { Send } from "@mui/icons-material";
 
 
-export const MessageList = ({ messages, sendMessage }) => {
+export const MessageList = ({ messages, sendMessage, savedValue, handleChangeValue }) => {
 
 
 	//стейт для инпута
-	const [value, setValue] = useState("");
+	//const [value, setValue] = useState(savedValue);
+  let value = savedValue;
 
 	const keyPressSendMessage = (evt) => {
 		if (value && evt.code === "Enter") {
 			sendMessage({ value, author: "User" });
-      setValue("");
+      handleChangeValue("");
+      //setValue("");
 		}
 	};
 
@@ -22,7 +24,8 @@ export const MessageList = ({ messages, sendMessage }) => {
 	const clickHandlerSendMessage = () => {
 		if (value) {
 			sendMessage({ value, author: "User" });
-      setValue("");
+      handleChangeValue("");
+      //setValue("");
 		}
 	};
 
@@ -42,7 +45,10 @@ export const MessageList = ({ messages, sendMessage }) => {
 				className="MessageList-Input-custom"
 				placeholder="...введите текст сообщения"
 				value={value}
-				onChange={(evt) => setValue(evt.target.value)}
+				onChange={(evt) => {
+          //setValue(evt.target.value);
+          handleChangeValue(evt.target.value);
+        }}
 				onKeyPress={keyPressSendMessage}
 				fullWidth={false}
 				endAdornment={

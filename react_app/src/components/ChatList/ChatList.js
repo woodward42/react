@@ -3,16 +3,18 @@ import { useState } from "react";
 import { Chat } from "./Chat";
 import { Link, useParams } from "react-router-dom";
 
-export const ChatList = () => {
-  const [chats] = useState(["room1", "room2", "room3"]);
+export const ChatList = ({conversations}) => {
+  //const [chats] = useState(["room1", "room2", "room3"]);
   //const [selectedIndex, setSelectedIndex] = useState(0);
+
+
   const params = useParams();
 
   return (
     <List component="nav">
-    {chats.map((chat, index) => (
-    <Link key={chat} to={`/chat/${chat}`}>
-        <Chat title={chat} selected={chat === params.roomId} />
+    {conversations.map((chat, index) => (
+    <Link key={chat.title} to={`/chat/${chat.title}`}>
+        <Chat title={chat.title} selected={chat.title === params.roomId} />
     </Link>
     ))}
 </List>

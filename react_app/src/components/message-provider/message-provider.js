@@ -5,9 +5,9 @@ import { useParams } from "react-router-dom";
 export function MessageProvider({ children }) {
   const { roomId } = useParams();
   // ChatList передать value в дочерний инпут
-  const [conversations] = useState([
-    { title: "room1", value: "input value 1" },
-    { title: "room2", value: "input value 2" },
+  const [conversations, setConversations] = useState([
+    { title: "room1", value: "" },
+    { title: "room2", value: "" },
   ]);
   const [messages, setMessages] = useState({
     room1: [{ value: "Room1", author: "Bot", id: new Date() }],
@@ -17,16 +17,24 @@ export function MessageProvider({ children }) {
   const state = useMemo(() => {
     return {
       messages: messages[roomId] ?? [],
-      value: "", // придумать как получить значение текущей комнаты
-      conversations,
+      savedValue: conversations.find(item => item?.title === `${roomId}`)?.value,
+      conversations: conversations,
       allMessages: messages,
-    };
+    }
   }, [roomId, messages, conversations]);
 
   const actions = useMemo(() => {
     return {
-      handleChangeValue: () => {
+      handleChangeValue: (value) => {
         // придумать как обновлять value на onChange
+        setConversations((conversations) => {
+            let temp_arr = [...conversations];
+
+                temp_arr.find(item => item?.title === `${roomId}`).value = value;
+                
+            return temp_arr;
+        });
+        //console.log(conversations);
       },
       createConversation: () => {
         // придумать как добавить чат

@@ -37,11 +37,12 @@ export function ChatPage() {
 			<Route path={["/chat/:roomId", "/chat"]}>
 				<MessageProvider>
 					{([state, actions]) => (
-						<MainTemplate header={<Header />} chats={<ChatList />}>
+						<MainTemplate header={<Header />} chats={<ChatList {...state}/>}>
 							<Route path="/chat/:roomId">
 								<MessageList
 									{...state}
 									sendMessage={actions.sendMessage}
+                                    handleChangeValue={actions.handleChangeValue}
 								/>
 							</Route>
 
