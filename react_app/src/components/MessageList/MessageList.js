@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import "./MessageList.css";
 import { Message } from "./Message/Message";
 import { Input, InputAdornment } from "@mui/material";

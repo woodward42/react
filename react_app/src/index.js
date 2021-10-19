@@ -3,8 +3,11 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
 import { ChatPage, Profile } from "./pages";
+import { store } from "./store/create-store";
+import { Provider } from "react-redux";
 
 ReactDOM.render(
+  <Provider store={store}>
 	<BrowserRouter>
       <Switch>
 
@@ -29,7 +32,8 @@ ReactDOM.render(
         </Route>
 
       </Switch>
-  </BrowserRouter>,
+  </BrowserRouter>
+  </Provider>,
 	document.getElementById("root")
 );
 
