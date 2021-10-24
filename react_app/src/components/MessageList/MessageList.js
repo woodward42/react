@@ -2,20 +2,22 @@ import "./MessageList.css";
 import { Message } from "./Message/Message";
 import { Input, InputAdornment } from "@mui/material";
 import { Send } from "@mui/icons-material";
+import { useParams } from "react-router";
+import { handleChangeMessageValue,	messageValueSelector, } from "../../store/conversations";
+import { useDispatch, useSelector } from "react-redux";
+import { useMemo } from "react";
 
+export const MessageList = ({ messages, sendMessage }) => {
 
-export const MessageList = ({ messages, sendMessage, savedValue, handleChangeValue }) => {
+	const { roomId } = useParams();
+	const dispatch = useDispatch();
 
-
-	//стейт для инпута
-	//const [value, setValue] = useState(savedValue);
-  let value = savedValue;
+	const messageValue = useMemo(() => messageValueSelector(roomId), [roomId]);
+	const value = useSelector(messageValue);
 
 	const keyPressSendMessage = (evt) => {
 		if (value && evt.code === "Enter") {
 			sendMessage({ value, author: "User" });
-      handleChangeValue("");
-      //setValue("");
 		}
 	};
 
@@ -23,8 +25,6 @@ export const MessageList = ({ messages, sendMessage, savedValue, handleChangeVal
 	const clickHandlerSendMessage = () => {
 		if (value) {
 			sendMessage({ value, author: "User" });
-      handleChangeValue("");
-      //setValue("");
 		}
 	};
 
@@ -45,9 +45,8 @@ export const MessageList = ({ messages, sendMessage, savedValue, handleChangeVal
 				placeholder="...введите текст сообщения"
 				value={value}
 				onChange={(evt) => {
-          //setValue(evt.target.value);
-          handleChangeValue(evt.target.value);
-        }}
+					dispatch(handleChangeMessageValue(evt.target.value, roomId))
+				}}
 				onKeyPress={keyPressSendMessage}
 				fullWidth={false}
 				endAdornment={

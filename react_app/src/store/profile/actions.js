@@ -1,5 +1,5 @@
 import { SHOW_AGE } from "./types";
 
-export const show_age = () => {
+export const toggle_show_age = () => {
 	return {type: SHOW_AGE}
 };

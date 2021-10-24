@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import {SHOW_AGE} from '../store/profile/types';
+import {toggle_show_age} from '../store/profile';
 
 export const Profile = () => {
     const profile = useSelector((state) => state.profile);
@@ -10,7 +10,7 @@ export const Profile = () => {
         <h2>Страница профиля</h2>
         <h3>Показывать возраст: {profile?.show_age ? 'Да' : 'Нет'}</h3>
         <button
-            onClick={() => dispatch({type: SHOW_AGE})}
+            onClick={() => dispatch(toggle_show_age())}
         >Показывать возраст</button>
         </>
     )

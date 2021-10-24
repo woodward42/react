@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { Route, Switch, useHistory } from "react-router-dom";
 import {
-	Header,
 	MessageList,
 	MainTemplate,
 	ChatList,
@@ -37,7 +36,7 @@ export function ChatPage() {
 			<Route path={["/chat/:roomId", "/chat"]}>
 				<MessageProvider>
 					{([state, actions]) => (
-						<MainTemplate header={<Header />} chats={<ChatList {...state}/>}>
+						<MainTemplate chats={<ChatList {...state}/>}>
 							<Route path="/chat/:roomId">
 								<MessageList
 									{...state}

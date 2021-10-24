@@ -5,10 +5,12 @@ import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
 import { ChatPage, Profile } from "./pages";
 import { store } from "./store/create-store";
 import { Provider } from "react-redux";
+import {Header} from './components'
 
 ReactDOM.render(
   <Provider store={store}>
 	<BrowserRouter>
+      <Header />
       <Switch>
 
         <Route path="/chat">
@@ -19,10 +21,8 @@ ReactDOM.render(
           <Profile />
         </Route>
 
-        <Route path="*">
+        <Route path="/">
           <h1>Меню</h1>
-          <Link to="/chat">Перейти в чат</Link><br />
-          <Link to="/profile">Перейти в профиль</Link>
         </Route>
 
 
