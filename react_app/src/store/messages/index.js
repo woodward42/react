@@ -1,4 +1,5 @@
 export * from "./types";
 export * from "./reducer";
-export * from "./action";
+export * from "./actions";
 export * from "./selectors";
+export * from "./thunks";

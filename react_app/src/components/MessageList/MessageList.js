@@ -4,7 +4,7 @@ import { Input, InputAdornment } from "@mui/material";
 import { Send } from "@mui/icons-material";
 import { useParams } from "react-router";
 import { handleChangeMessageValue,	messageValueSelector, } from "../../store/conversations";
-import { messagesByRoomSelector, handleSendNewMessage} from "../../store/messages";
+import { messagesByRoomSelector, sendMessageWithThunk} from "../../store/messages";
 import { useDispatch, useSelector } from "react-redux";
 import { useMemo } from "react";
 
@@ -19,19 +19,18 @@ export const MessageList = () => {
 	const messagesSel = useMemo(() => messagesByRoomSelector(roomId),[roomId]);
 	const messages = useSelector(messagesSel);
 
-	const keyPressSendMessage = (evt) => {
-		if (value && evt.code === "Enter") {
-			dispatch(handleSendNewMessage({ value, author: "User" }, roomId));
-		}
-	};
-
   
 	const clickHandlerSendMessage = () => {
 		if (value) {
-			dispatch(handleSendNewMessage({ value, author: "User" }, roomId));
+			dispatch(sendMessageWithThunk({ value, author: "User" }, roomId));
 		}
 	};
-
+	
+	const keyPressSendMessage = (evt) => {
+		if (value && evt.code === "Enter") {
+			clickHandlerSendMessage();
+		}
+	};
 
 	return (
 		<>

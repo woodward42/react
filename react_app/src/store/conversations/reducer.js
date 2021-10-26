@@ -1,4 +1,4 @@
-import { HANDLE_CHANGE_MESSAGE_VALUE, CREATE_CONVERSATION } from "./types";
+import { HANDLE_CHANGE_MESSAGE_VALUE, CREATE_CONVERSATION, CLEAR_MESSAGE_VALUE_ON_SEND } from "./types";
 
 const initialState = {
   conversations: [
@@ -6,6 +6,14 @@ const initialState = {
     { title: "room2", value: "" },
   ],
 };
+
+const updateConversations = (state, roomId, value) =>
+  state.conversations.map((conversation) => {
+    return conversation.title === roomId
+      ? { ...conversation, value }
+      : conversation;
+  });
+
 
 export const conversationsReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -25,6 +33,15 @@ export const conversationsReducer = (state = initialState, action) => {
           ...state.conversations,
           { title: action.payload, value: "" },
         ],
+      };
+    case CLEAR_MESSAGE_VALUE_ON_SEND:
+      return {
+        ...state,
+        conversations: state.conversations.map((conversation) => {
+          return conversation.title === action.payload
+            ? { ...conversation, value: "" }
+            : conversation;
+        }),
       };
     default:
       return state;

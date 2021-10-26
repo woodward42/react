@@ -12,7 +12,7 @@ export const store = createStore(
 		messages: messagesReducer,
 	}),
 	compose(
-        applyMiddleware(BotSendAnswerMessage),
+        applyMiddleware(thunk, BotSendAnswerMessage),
 		//window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 	)
 )
