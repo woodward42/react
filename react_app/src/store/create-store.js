@@ -1,13 +1,18 @@
-import {createStore, combineReducers} from "redux";
+import thunk from "redux-thunk";
+import { createStore, combineReducers, compose, applyMiddleware } from "redux";
 import { ProfileReducer } from "./profile";
 import { conversationsReducer } from "./conversations";
 import { messagesReducer } from "./messages";
+import { BotSendAnswerMessage } from "./middlewares";
 
 export const store = createStore(
-    combineReducers({
-        profile: ProfileReducer,
-        conversations: conversationsReducer,
-        messages: messagesReducer,
-    }),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+	combineReducers({
+		profile: ProfileReducer,
+		conversations: conversationsReducer,
+		messages: messagesReducer,
+	}),
+	compose(
+        applyMiddleware(BotSendAnswerMessage),
+		//window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+	)
+)

@@ -52,6 +52,7 @@ export function MessageProvider({ children }) {
     };
   }, [roomId]);
 
+  /*
   useEffect(() => {
     const messagesByRoomId = messages[roomId] ?? [];
     const lastMessage = messagesByRoomId[messagesByRoomId.length - 1];
@@ -65,6 +66,7 @@ export function MessageProvider({ children }) {
 
     return () => clearInterval(timerId);
   }, [messages, roomId, actions]);
+  */
 
   return children([state, actions]);
 }
