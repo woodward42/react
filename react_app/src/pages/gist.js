@@ -3,17 +3,19 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { getGists, gistsSelector } from "../store/gists";
+import { getGists, gistsSelector,getGistsStart } from "../store/gists";
 
 
 export function GistsPage() {
 
 	const dispatch = useDispatch();
 	const { gistError, gistPending, gists } = useSelector(gistsSelector);
-	
+
 	useEffect(() => {
 		if (!gists.length) {
-			dispatch(getGists());
+			//dispatch(getGists());
+            dispatch(getGistsStart())       //@ Как тут правильно на этой странице не через наш санк запускать всё, а через middleware?
+            
 		}
 	}, [dispatch, gists]);
 
@@ -22,7 +24,12 @@ export function GistsPage() {
 		return <h1>Pending ...</h1>;
 	}
 	if (gistError) {
-		return <h1>Error</h1>;
+        console.log('if gistError')
+		return (
+            <>
+            <h1>Error</h1>
+            </>    
+        )
 	}
 
 

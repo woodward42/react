@@ -3,7 +3,7 @@ import { createStore, combineReducers, compose, applyMiddleware } from "redux";
 import { ProfileReducer } from "./profile";
 import { conversationsReducer } from "./conversations";
 import { messagesReducer } from "./messages";
-import { BotSendAnswerMessage } from "./middlewares";
+import { BotSendAnswerMessage,getGistsMiddlewareFunc } from "./middlewares";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { getGistsApi } from "../api";
@@ -31,7 +31,8 @@ export const store = createStore(
 	compose(
 		applyMiddleware(
 			thunk.withExtraArgument({ getGistsApi }),
-			BotSendAnswerMessage
+			BotSendAnswerMessage,
+			getGistsMiddlewareFunc
 		)
 		//window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 	)
