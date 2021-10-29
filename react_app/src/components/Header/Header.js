@@ -7,6 +7,8 @@ const Menu = () => {
 		<Link to="/chat">Чат</Link>
 		<br />
 		<Link to="/profile">Профиль</Link>
+		<br />
+		<Link to="/gists">Gists</Link>
 	  </div>
 	);
   };
