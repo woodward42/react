@@ -8,6 +8,7 @@ import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { getGistsApi } from "../api";
 import { gistsReducer } from "./gists";
+import { sessionReducer } from "./session";
 
 const pConfig = {
 	key: "react-app",
@@ -23,6 +24,7 @@ const pReducer = persistReducer(
 		conversations: conversationsReducer,
 		messages: messagesReducer,
 		gists: gistsReducer,
+		session: sessionReducer,
 	})
 );
 
