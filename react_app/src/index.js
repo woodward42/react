@@ -1,29 +1,62 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
-import { ChatPage, Profile, GistsPage } from "./pages";
+import { ChatPage, Profile, GistsPage, LoginPage, SignUpPage } from "./pages";
 import { store, persistor } from "./store/create-store";
-import { Provider } from "react-redux";
-import { Header } from "./components";
+import { Provider, useDispatch, useSelector } from "react-redux";
+import { Header, PrivateRoute, PublicRoute  } from "./components";
 import { PersistGate } from "redux-persist/integration/react";
+import { firebaseApp } from "./api/firebase";
+import { sessionSelector, onAuthStateChanged } from "./store/session";
 
-ReactDOM.render(
-	<Provider store={store}>
-		<PersistGate persistor={persistor}>
-			<BrowserRouter>
-				<Header />
+const App = () => {
+	// const [session, setSession] = useState(null);
+
+	// useEffect(() => {
+	// 	firebaseApp.auth().onAuthStateChanged((user) => {
+	// 		if (user){
+	// 			setSession(user)
+	// 		}
+	// 		else {
+	// 			setSession(null)
+	// 		}
+	// 	})
+	// },[])
+
+	// console.log("session", session?.email);
+
+	
+	const session = useSelector(sessionSelector);
+	const dispatch = useDispatch();
+  
+	useEffect(() => {
+	  dispatch(onAuthStateChanged());
+	}, [dispatch]);
+  
+	const isAuth = !!session?.email;
+  
+	return (
+	  <>
+		<Header session={session}/>
 				<Switch>
-					<Route path="/chat">
+					<PrivateRoute path="/chat" isAuth={isAuth}>
 						<ChatPage />
-					</Route>
+					</PrivateRoute>
 
-					<Route exact path="/profile">
+					<PrivateRoute exact path="/profile" isAuth={isAuth}>
 						<Profile />
-					</Route>
-					<Route path="/gists">
+					</PrivateRoute>
+					<PrivateRoute path="/gists" isAuth={isAuth}>
 						<GistsPage />
-					</Route>
+					</PrivateRoute>
+					<PublicRoute path="/login" isAuth={isAuth}>
+						<LoginPage />
+					</PublicRoute>
+					<PublicRoute path="/signup" isAuth={isAuth}>
+						<SignUpPage />
+					</PublicRoute>
 					<Route path="/">
 						<h1>Меню</h1>
 					</Route>
@@ -33,6 +66,15 @@ ReactDOM.render(
 						<Link to="/chat">Перейти в чат</Link>
 					</Route>
 				</Switch>
+	  </>
+	);
+  };
+
+ReactDOM.render(
+	<Provider store={store}>
+		<PersistGate persistor={persistor}>
+			<BrowserRouter>
+				<App />
 			</BrowserRouter>
 		</PersistGate>
 	</Provider>,

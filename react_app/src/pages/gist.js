@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { getGists, gistsSelector,getGistsStart } from "../store/gists";
+import { getGists, gistsSelector } from "../store/gists";
 
 
 export function GistsPage() {
@@ -13,8 +13,8 @@ export function GistsPage() {
 
 	useEffect(() => {
 		if (!gists.length) {
-			//dispatch(getGists());
-            dispatch(getGistsStart())       //@ Как тут правильно на этой странице не через наш санк запускать всё, а через middleware?
+			dispatch(getGists());
+            //dispatch(getGistsStart()) 
             
 		}
 	}, [dispatch, gists]);
