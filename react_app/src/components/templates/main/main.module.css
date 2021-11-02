@@ -1,0 +1,39 @@
+.header {
+	min-height: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 10px;
+	background-color: burlywood;
+}
+
+.grid_wrapper {
+	display: grid;
+	grid-template-columns: 1fr 4fr;
+	width: 90%;
+}
+
+.chats_list {
+    color: firebrick;
+    text-transform: uppercase;
+}
+
+.messages_list {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+}
+
+
+.app {
+    background-color: #c0c2c7;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: calc(10px + 2vmin);
+    color: rgb(37, 30, 30);
+  }

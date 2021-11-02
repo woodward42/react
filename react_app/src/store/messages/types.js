@@ -1,0 +1,1 @@
+export const SEND_NEW_MESSAGE =  "@messages/sending new message";

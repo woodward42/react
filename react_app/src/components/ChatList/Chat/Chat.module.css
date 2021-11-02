@@ -1,0 +1,18 @@
+.icon,
+.text {
+	color: #fff;
+}
+
+.text span {
+	font-size: 14px;
+}
+
+.item {
+	background-color: black;
+}
+.MuiListItem-root.Mui-selected {
+	background-color: #213e5a !important;
+}
+.Mui-selected:hover {
+	background-color: #213e5a;
+}
